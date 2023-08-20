@@ -24,6 +24,7 @@ reg query "HKEY_CURRENT_USER\Environment"
 ```cmd
 systeminfo | findstr KB
 wmic qfe list
+wmic qfe list full
 ```
 ### PowerShell
 ```powershell
@@ -58,16 +59,29 @@ vssadmin list shadows
 ### Local Users and Groups
 #### CMD
 ```cmd
-net users
+net user
 net user <username>
+wmic useraccount list
+wmic useraccount list full
+wmic useraccount get Name, AccountType, SID, Status
+
 net localgroup
 net localgroup <groupname>
 ```
+#### PowerShell
+```powershell
+Get-LocalUser
+Get-LocalUser | select Name, Enabled, SID, LastLogon
+
+Get-LocalGroupMember -Group <groupname> | select Name, PrincipalSource, SID
+```
+
 ### Domain Users and Groups
 #### CMD
 ```cmd
-net users /DOMAIN
+net user /DOMAIN
 net user <username> /DOMAIN
+
 net localgroup /DOMAIN
 net localgroup <groupname> /DOMAIN
 net group /DOMAIN
