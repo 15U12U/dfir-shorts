@@ -64,6 +64,7 @@ net user <username>
 wmic useraccount list
 wmic useraccount list full
 wmic useraccount get Name, AccountType, SID, Status
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\SpecialAccounts\UserList"
 
 net localgroup
 net localgroup <groupname>
